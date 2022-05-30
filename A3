@@ -1,0 +1,286 @@
+Assignment-3
+PL-2
+1.	Write a program to calculate area and volume of sphere using static variable and method create two static methods for area and volume calculation. (insert data from user).
+CODE:
+// package SurfaceAreaPrograms;
+import java.util.Scanner;
+
+public class Q1 {
+    private static Scanner sc;
+
+    public static void main(String[] args) {
+        double radius, sa, Volume;
+        sc = new Scanner(System.in);
+        
+        System.out.println("\n Please Enter the radius of a Sphere : ");
+        radius = sc.nextDouble();
+        
+        sa =  4 * 3.14   * radius * radius;
+        Volume = (4.0 / 3) * 3.14    * radius * radius * radius;
+
+        System.out.format("\n The Surface area of a Sphere = %.2f", sa);
+        System.out.format("\n The Volume of a Sphere = %.2f", Volume);
+    }
+}
+
+OUTPUT:
+ 
+2.	 Display all your information (prn, name, age, address, class) on console without creating any object and writing any code in main method. 
+CODE:
+class Q2 {
+
+    static {
+
+        System.out.println("PRN - 2020BTECS00055");
+        System.out.println("NAME - Shreeshail Mahajan.");
+        System.out.println("AGE - 20");
+        System.out.println("ADDRESS - Islampur");
+        System.out.println("CLASS - SYCSE");
+    }
+
+    public static void main(String args[]) {
+
+    }
+}
+
+
+OUTPUT:
+ 
+
+3.	 Demonstrate how to use static inner class and non-static inner class to access static and non-static members of outer class. 
+CODE:
+class Q3 {
+
+    int a = 10;
+    static int b = 20;
+
+    void display() {
+        System.out.println("Non static method.");
+    }
+
+    static void disp() {
+        System.out.println("Static method.");
+    }
+
+    class inner {
+
+        void m1() {
+            disp();
+            display();
+            System.out.println("The value of the static and non static member is " + b + " and " + a);
+        }
+
+    }
+
+    static class inner_static {
+
+        static void m1() {
+            disp();
+            System.out.println("The value of static member is " + b);
+        }
+    }
+
+    public static void main(String args[]) {
+        Q3 q = new Q3();
+
+        Q3.inner i = q.new inner();
+        System.out.println("For the non static inner class : ");
+        i.m1();
+        System.out.println("For the static inner class : ");
+        inner_static.m1();
+
+    }
+}
+
+
+OUTPUT:
+ 
+4.	Write a program using final variable to check speed limit exceeds or not on highway. If speed is greater than 100. Then generate alert message. 
+CODE:
+import java.util.*;
+
+public class Q4 {
+    final int speed = 100;
+
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int s;
+
+        System.out.print("Enter the speed : ");
+        s = sc.nextInt();
+
+        if (s > 100) {
+            System.out.println("Alert!! speed is above 100.");
+        }
+
+    }
+}
+
+
+
+OUTPUT:
+ 
+5.	Create an abstract class 'Bank' with an abstract method 'getBalance'. $100, $150 and $200 are deposited in banks A, B and C respectively. 'BankA', 'BankB' and 'BankC' are subclasses of class 'Bank', each having a method named 'getBalance'. Call this method by creating an object of each of the three classes. 
+CODE:
+abstract class Bank {
+    abstract void getBalance();
+}
+
+class BankA extends Bank {
+
+    int dep;
+
+    BankA() {
+        dep = 100;
+    }
+
+    void getBalance() {
+        System.out.println("Balance : $" + dep);
+    }
+}
+
+class BankB extends Bank {
+    int dep;
+
+    BankB() {
+        dep = 150;
+    }
+
+    void getBalance() {
+        System.out.println("Balance : $" + dep);
+    }
+}
+
+class BankC extends Bank {
+    int dep;
+
+    BankC() {
+        dep = 200;
+    }
+
+    void getBalance() {
+        System.out.println("Balance : $" + dep);
+    }
+}
+
+class Main {
+
+    public static void main(String args[]) {
+        BankA a = new BankA();
+        BankB b = new BankB();
+        BankC c = new BankC();
+
+        a.getBalance();
+        b.getBalance();
+        c.getBalance();
+    }
+
+}
+
+
+OUTPUT:
+ 
+6.	 An abstract class has a construtor which prints "This is constructor of abstract class", an abstract method named 'a_method' and a non-abstract method which prints "This is a normal method of abstract class". A class 'SubClass' inherits the abstract class and has a method named 'a_method' which prints "This is abstract method". Now create an object of 'SubClass' and call the abstract method and the non-abstract method. 
+CODE:
+abstract class Q6 {
+    abstract public void a_method();
+
+    public void disp() {
+        System.out.println("This is normal method of abstract class.");
+    }
+}
+
+class Subclass extends Q6 {
+
+    public void a_method() {
+        System.out.println("This is constructor of abstract class.");
+    }
+
+    public static void main(String args[]) {
+        Subclass s = new Subclass();
+
+        s.a_method();
+        s.disp();
+    }
+}
+
+
+OUTPUT:
+ 
+7.	We have to calculate the area of a rectangle, a square and a circle. Create an abstract class 'Shape' with three abstract methods namely 'RectangleArea' taking two parameters, 'SquareArea' and 'CircleArea' taking one parameter each. The parameters of 'RectangleArea' are its length and breadth, that of 'SquareArea' is its side and that of 'CircleArea' is its radius. Now create another class 'Area' containing all the three methods 'RectangleArea', 'SquareArea' and 'CircleArea' for printing the area of rectangle, square and circle respectively. Create an object of class 'Area' and call all the three methods.
+CODE:
+abstract class Shape {
+    abstract void RectangleArea(int x, int y);
+
+    abstract void CircleArea(int r);
+
+    abstract void SquareArea(int a);
+}
+
+class Area {
+
+    void RectangleArea(int x, int y) {
+        System.out.println("The area of rectangle is " + x * y);
+    }
+
+    void SquareArea(int a) {
+        System.out.println("The area of square is " + a * a);
+    }
+
+    void CircleArea(int t) {
+        System.out.println("The area of circle is " + 3.14 * t * t);
+    }
+
+    public static void main(String args[]) {
+        Area a = new Area();
+
+        a.RectangleArea(10, 20);
+        a.SquareArea(10);
+        a.CircleArea(10);
+    }
+}
+
+
+OUTPUT:
+ 
+
+8.	Define a package named ‘useful’ with a class name ‘Useme’ having following methods: 1. area() → To calculate area of given shape. 2. percentage() → to calculate percentage given total marks and marks obtained. Develop a program to import above package and use both methods.
+CODE:
+import useful.*;
+
+public class Useme {
+
+    public static void main(String args[]) {
+
+        useful u = new useful();
+        u.area(10, 10);
+        u.area(10);
+        u.percentage(225, 300);
+    }
+
+}
+
+
+PACKAGE:
+package useful;
+
+public class useful {
+
+    public void area(int x, int y) {
+        System.out.println("The area of shape is " + x * y);
+    }
+
+    public void area(int x) {
+        System.out.println("The area of shape is " + x * x);
+    }
+
+    public void percentage(float mark, float total_marks) {
+        System.out.println("The percentage is " + (mark / total_marks) * 100);
+    }
+}
+
+
+OUTPUT:
+
+ 
+
