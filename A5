@@ -1,0 +1,305 @@
+Assignment-5
+PL-2
+1.	Write a program to copy contents of one file to another file.
+CODE:
+import java.util.*;
+import java.io.*;
+
+class Q1{
+
+    public static void main(String args[])
+    {
+        
+        try{
+            File f = new File("D:/extra/data.txt");
+            FileWriter w = new FileWriter("D:/extra/new.txt");
+
+            Scanner sc = new Scanner(f);
+
+            while(sc.hasNextLine())
+            {
+                String s=sc.nextLine();
+
+                w.write(s);
+                
+            }
+            w.close();
+            sc.close();
+        }
+        catch(FileNotFoundException e)
+        {
+            e.printStackTrace();
+        } catch (IOException e) {
+            
+            e.printStackTrace();
+        }
+
+        
+        
+    }
+}
+
+
+OUTPUT:
+ 
+
+
+2.	Write a program to write bytes to a file.
+CODE:
+import java.util.*;
+import java.io.*;
+class Q2{
+
+    public static void main(String args[])
+    {
+        
+        try {
+            FileWriter f = new FileWriter("D:/extra/new.txt");
+
+            Scanner sc = new Scanner(System.in);
+
+            byte a = sc.nextByte();
+            f.write(a);
+
+            f.close();
+            sc.close();
+        } catch (IOException e) {
+            
+            e.printStackTrace();
+        }
+       
+    }
+}
+
+
+OUTPUT:
+ 
+FILE:
+ 
+3.	Develop a program to display contents of file supplied as command line argument.
+CODE:
+import java.io.*;
+import java.util.*;
+
+public class Q3 {
+    
+    public static void main(String args[])
+    {
+        String s = args[0];
+        File f = new File(s);
+        try {
+            Scanner sc = new Scanner(f);
+
+            while(sc.hasNextLine())
+            {
+                System.out.println(sc.nextLine());
+            }
+            sc.close();
+        } catch (FileNotFoundException e) {
+         
+            e.printStackTrace();
+        }
+
+    }
+}
+
+
+
+
+OUTPUT:
+ 
+
+
+4.	Write Java program to read text from file from a specified index or skipping byte using FileInputStream.
+CODE:
+import java.io.*;
+import java.util.*;
+
+public class Q4 {
+    
+    public static void main(String args[])
+    {
+            FileInputStream f;
+            try {
+                f = new FileInputStream("D:/extra/data.txt");
+                
+                    Scanner sc = new Scanner(f);
+    
+                    try {
+                        f.skip(10);
+
+                        while(sc.hasNextLine())
+                        {
+                            System.out.println(sc.nextLine());
+                        }
+
+                        sc.close();
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+    
+                
+            } catch (FileNotFoundException e1) {
+                
+                e1.printStackTrace();
+            }
+            
+
+    }
+}
+
+
+
+OUTPUT:
+ 
+
+5.	Write Java program to append text/string in a file.
+CODE:
+import java.util.*;
+import java.io.*;
+
+public class Q5 {
+    
+    public static void main(String args[])
+    {
+       
+        try {
+            BufferedWriter f = new BufferedWriter(new FileWriter("D:/extra/data.txt"));
+
+            Scanner sc = new Scanner(System.in);
+
+            System.out.println("Enter string : ");
+            String s = sc.nextLine();
+
+            f.append(s);
+
+            sc.close();
+            f.close();
+        } catch (IOException e1) {
+            
+            e1.printStackTrace();
+        }
+
+    }
+}
+
+
+
+OUTPUT:
+ 
+6.	Write Java program to read a file line by line.
+CODE:
+import java.util.*;
+import java.io.*;
+
+public class Q6 {
+    
+    public static void main(String args[])
+    {
+        try {
+            FileReader f = new FileReader("D:/extra/data.txt");
+            
+            Scanner sc = new Scanner(f);
+            
+            while(sc.hasNextLine())
+            {
+                System.out.println(sc.nextLine());
+            }
+            sc.close();
+
+        } catch (FileNotFoundException e) {
+            
+            e.printStackTrace();
+        }
+    }
+}
+
+
+
+OUTPUT:
+ 
+7.	Write Java program to delete a file.
+CODE:
+import java.io.*;
+
+public class Q7 {
+
+    public static void main(String args[])
+    {
+        File f = new File("D:/extra/data.txt");
+
+        if(f.delete())
+        {
+            System.out.println("File deleted successfully with name : "+f.getName());
+        }
+        else
+        {
+            System.out.println("Error occured during deletion.");
+        }
+        
+    }
+    
+}
+
+
+
+OUTPUT:
+ 
+8.	Write Java Program to display text file information.
+CODE:
+import java.io.*;
+
+public class Q8 {
+
+    public static void main(String args[])
+    {
+        File f = new File("new.txt");
+
+        System.out.println("The file information is as ");
+        System.out.println("Name : "+f.getName());
+        System.out.println("Absolute path : "+f.getAbsolutePath());
+        System.out.println("Readable : "+f.canRead());
+        System.out.println("Writeable : "+f.canWrite());
+    }
+    
+}
+
+
+
+OUTPUT:
+ 
+9.	Explain java stream classes.
+Java provides stream classes for performing the IO operation and they classified broadly into Output stream classes and Input stream classes
+Input stream class has following sub-classes:
+•	AudioInputStream
+•	ByteArrayInputStream
+•	FileInputStream
+•	FilterInputStream
+•	StringBufferInputStream
+•	ObjectInputStream
+
+Output stream class has following sub-classes:
+•	ByteArrayOutputStream
+•	FileOutputStream
+•	StringBufferOutputStream
+•	ObjectOutputStream
+•	DataOutputStream
+•	PrintStream
+
+There are many methods in it to perform operations on the file.
+
+10.	Explain file operations.
+The operations on the file are as follows:
+Create file:
+We can create new file by using the method CreateNewFile(). It throws exception if it fails to create the file.
+Write file:
+We can write the data into the file using FileWriter class. It throws exception if file is not found.
+Read file:
+For reading we can use the File class object and can read the file by using object of scanner class.
+Delete file:
+For deleting file we have a method delete() in File class.
+
+
+
+
