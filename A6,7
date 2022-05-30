@@ -1,0 +1,857 @@
+PL-2
+Assignment-6 &7.
+Q1. Create objects of class student(roll number, name and gender), perform different operations on below collection components 
+a. ArrayList
+Code:
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Student 
+{
+    int rollNo;
+    String name, mob_no;
+
+    public Student(int rollNo, String name, String mob_no) 
+    {
+        this.rollNo = rollNo;
+        this.name = name;
+        this.mob_no = mob_no;
+    }
+
+    public void setRollNo(int rollNo) 
+    {
+        this.rollNo = rollNo;
+    }
+
+    public void setName(String name) 
+    {
+        this.name = name;
+    }
+
+    public void setGender(String mob_no) 
+    {
+        this.mob_no = mob_no;
+    }
+
+    public int getRollNo() 
+    {
+        return rollNo;
+    }
+
+    public String getName() 
+    {
+        return name;
+    }
+
+    public String getMobNo() 
+    {
+        return mob_no;
+    }
+}
+
+public class Q1_1 
+{
+    static ArrayList<Student> StudentList = new ArrayList<>();
+
+    public static void main(String[] args) 
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("How many student's data you want to insert :");
+        int count = sc.nextInt();
+        System.out.println("Insert Data :");
+        for (int i = 1; i <= count; i++) 
+        {
+            int rollNo;
+            String name, mob_no;
+            System.out.print("Enter roll no. :");
+            rollNo = sc.nextInt();
+            System.out.print("Enter name :");
+            name = sc.next();
+            System.out.print("Enter Mobile no. :");
+            mob_no = sc.next();
+            System.out.println();
+            Student s = new Student(rollNo, name, mob_no);
+            StudentList.add(s);
+        }
+        System.out.println();
+        System.out.println("Printing Data :");
+        for (int i = 0; i < StudentList.size(); i++) 
+        {
+            System.out.println("Student " + String.valueOf(i + 1));
+            Student s = StudentList.get(i);
+            System.out.println("Roll No : " + s.getRollNo() + "\n" + "Name : "
+                    + s.getName() + "\n" + "Gender : " + s.getMobNo());
+            System.out.println();
+        }
+        sc.close();
+    }
+}
+Output:
+ 
+b. Linked List
+Code:
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class Q1_2 {
+    private static LinkedList<Student> StudentList = new LinkedList<>();
+    private static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        inputStudents();
+        System.out.println();
+        printList();
+        System.out.println("Do you want to delete any student data :");
+        String reply = "no";
+        reply = scanner.next();
+        if (reply.toLowerCase().equals("yes")) {
+            int rno = 0;
+            System.out.print("Enter roll no. of student :");
+            rno = scanner.nextInt();
+            removeStudent(rno);
+        }
+        printList();
+        scanner.close();
+    }
+
+    private static void inputStudents() {
+        System.out.println("How many student's data you want to insert :");
+        int count = scanner.nextInt();
+        System.out.println("Input of Data :");
+        for (int i = 1; i <= count; i++) {
+            int rollNo;
+            String name, gender;
+            System.out.print("Enter roll no :");
+            rollNo = scanner.nextInt();
+            System.out.print("Enter name :");
+            name = scanner.next();
+            System.out.print("Enter gender :");
+            gender = scanner.next();
+            System.out.println();
+            Student s = new Student(rollNo, name, gender);
+            StudentList.add(s);
+        }
+    }
+
+    private static void removeStudent(int rno) {
+        int flag = 0;
+        for (int i = 0; i < StudentList.size(); i++) {
+            Student s = StudentList.get(i);
+            if (s.rollNo == rno) {
+                flag = 1;
+                StudentList.remove(i);
+            } else {
+                flag = 0;
+            }
+        }
+        if (flag == 0) {
+            System.out.println("Student does not exist in the list.");
+        }
+    }
+
+    private static void printList() {
+        System.out.println("\nOutput of Data :");
+        for (int i = 0; i < StudentList.size(); i++) {
+            System.out.println("Student " + String.valueOf(i + 1));
+            Student s = StudentList.get(i);
+            System.out.println("Roll No : " + s.getRollNo() + "\n" + "Name : "
+                    + s.getName() + "\n" + "Gender : " + s.getGender());
+            System.out.println();
+        }
+    }
+}
+
+
+
+
+Output:
+ 
+c. ArrayDeque
+Code:
+import java.util.ArrayDeque;
+import java.util.Scanner;
+public class Q1_3 
+{
+    private static ArrayDeque<Student> StudentList = new ArrayDeque<>(5);
+    private static Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) {
+     System.out.println();
+    StudentList.addFirst(new Student(3, "Brijesh", "Male"));
+    StudentList.addFirst(new Student(6, "Somesh", "Male"));
+    StudentList.addFirst(new Student(57, "Mrunal", "Female"));
+    StudentList.addLast(new Student(62, "Sudesh", "Male"));
+    printDequeList();
+    System.out.println("Do you want to clear list :");
+    String reply = "no";
+    reply = scanner.next();
+    if(reply.toLowerCase().equals("yes")){
+    if(StudentList.isEmpty()){
+    System.out.println("List is already Empty.");
+    }
+    StudentList.clear();
+    }
+    printDequeList();
+    scanner.close();
+    }
+    private static void printDequeList(){
+    System.out.println("\nPrinting Data :");
+    for(int i = 0; i < StudentList.size(); i++){
+    System.out.println("Student " + String.valueOf(i+1));
+    Student s = StudentList.poll();
+    System.out.println("Roll No : " + s.getRollNo() + "\n" + "Name : "
+    + s.getName() + "\n" + "Gender : " + s.getGender());
+    System.out.println();
+    }
+    }
+    }
+
+Output:
+ 
+d. PriorityQueue
+Code:
+import java.util.ArrayList;
+import java.util.PriorityQueue;
+import java.util.Scanner;
+
+public class Q1_4 {
+    private static ArrayList<Student> StudentList = new ArrayList<>();
+    private static PriorityQueue<Integer> priorityList = new PriorityQueue<>();
+    private static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        inputStudents();
+        printPriorityQueueList();
+        scanner.close();
+    }
+
+    private static void printPriorityQueueList() {
+        System.out.println("\nPrinting Data :");
+        while (!priorityList.isEmpty()) {
+            Student s = null;
+            for (Student student : StudentList) {
+                if (student.rollNo == priorityList.peek()) {
+                    s = student;
+                }
+            }
+            priorityList.poll();
+            System.out.println("Roll No : " + s.getRollNo() + "\n" +
+                    "Name : " + s.getName() + "\n" + "Gender : " + s.getGender());
+            System.out.println();
+        }
+    }
+
+    private static void inputStudents() {
+        System.out.println("How many student's data you want to insert :");
+        int count = scanner.nextInt();
+        System.out.println("Insert Data :");
+        for (int i = 1; i <= count; i++) {
+            int rollNo;
+            String name, gender;
+            System.out.print("Enter rollNo :");
+            rollNo = scanner.nextInt();
+            System.out.print("Enter name :");
+            name = scanner.next();
+            System.out.print("Enter gender :");
+            gender = scanner.next();
+            Student s = new Student(rollNo, name, gender);
+            StudentList.add(s);
+            priorityList.add(rollNo);
+            System.out.println();
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+Output:
+ 
+e. HashSet
+Code:
+import java.util.Iterator;
+import java.util.HashSet;
+import java.util.Scanner;
+public class Q1_5{
+    private static HashSet<Student> StudentList = new HashSet<>();
+    private static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        inputStudents();
+        System.out.println();
+        printHashSetList();
+        scanner.close();
+    }
+
+    private static void printHashSetList() {
+        System.out.println("Printing Data :");
+        Iterator<Student> itr = StudentList.iterator();
+        while (itr.hasNext()) {
+            Student s = itr.next();
+            System.out.println("Roll No : " + s.getRollNo() + "\n" + "Name : "
+                    + s.getName() + "\n" + "Gender : " + s.getGender());
+            System.out.println();
+        }
+    }
+
+    private static void inputStudents() {
+        System.out.println("How many student's data you want to insert :");
+        int count = scanner.nextInt();
+        System.out.println("Insert Data :");
+        for (int i = 1; i <= count; i++) {
+            int rollNo;
+            String name, gender;
+            System.out.print("Enter rollNo :");
+            rollNo = scanner.nextInt();
+            System.out.print("Enter name :");
+            name = scanner.next();
+            System.out.print("Enter gender :");
+            gender = scanner.next();
+            System.out.println();
+            Student s = new Student(rollNo, name, gender);
+            StudentList.add(s);
+        }
+    }
+}
+
+Output:
+ 
+f. TreeSet
+Code:
+import java.util.TreeSet;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
+public class Q1_6 {
+    private static ArrayList<Student> StudentList = new ArrayList<>();
+    private static TreeSet<Integer> rollList = new TreeSet<>();
+    private static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+    inputStudents();
+    System.out.println("Print data :");
+    Iterator<Integer> rIterator = rollList.iterator();
+    while (rIterator.hasNext()) {
+    int rollNo = rIterator.next();
+    Student s = null;
+    for (Student student : StudentList) {
+    if (student.rollNo == rollNo) {
+    s = student;
+    }
+    }
+    System.out.println("Student of Roll No : " + s.rollNo + " and Name : " + s.name + " Gender : " + s.gender
+    + " is on the peek of the Student List");
+    }
+    scanner.close();
+    }
+
+    private static void inputStudents() {
+    System.out.println("How many student's data you want to insert:");
+    int count = scanner.nextInt();
+    System.out.println("Insert Data :");
+    for (int i = 1; i <= count; i++) {
+    int rollNo;
+    String name, gender;
+    System.out.print("Enter rollNo :");
+    rollNo = scanner.nextInt();
+    System.out.print("Enter name :");
+    name = scanner.next();
+    System.out.print("Enter gender :");
+    gender = scanner.next();
+    Student s = new Student(rollNo, name, gender);
+    StudentList.add(s);
+    rollList.add(rollNo);
+    System.out.println();
+    }
+    }
+}
+
+Output:
+ 
+g. HashMap:
+Code:
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Iterator;
+import java.util.Scanner;
+public class Q1_7 {
+    private static HashMap<Integer, Student> studentMap = new
+    HashMap<>();
+     private static Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) {
+    inputStudents();
+    System.out.println();
+    for (Map.Entry<Integer, Student> sEntry :studentMap.entrySet()){
+    System.out.println("Roll No : " + sEntry.getKey());
+    Student s = sEntry.getValue();
+    System.out.println("Name : " + s.name + " \nGender : " +
+    s.gender);
+    System.out.println();
+    }
+    scanner.close();
+    }
+    private static void inputStudents() {
+    System.out.println("How many student's data you want to insert :");
+    int count = scanner.nextInt();
+    System.out.println("Insert Data :");
+    for (int i = 1; i <= count; i++) {
+    int rollNo;
+    String name, gender;
+    System.out.print("Enter rollNo :");
+    rollNo = scanner.nextInt();
+    System.out.print("Enter name :");
+    name = scanner.next();
+    System.out.print("Enter gender :");
+    gender = scanner.next();
+    Student s = new Student(rollNo, name, gender);
+    studentMap.put(rollNo, s);
+    System.out.println();
+    }
+    }
+    }
+
+Output:
+ 
+Q 2. Create objects of class book(ISBN number, name and price), perform different operations on below collection components 
+Book Class:
+import java.util.*;
+class Book {
+int ISBN;
+String name, price;
+public Book(int ISBN, String name, String price) {
+this.ISBN = ISBN;
+this.name = name;
+this.price = price;
+}
+public Book() {
+}
+public void setISBN(int ISBN) {
+this.ISBN = ISBN;
+}
+public void setName(String name) {
+this.name = name;
+}
+public void setprice(String price) {
+this.price = price;
+}
+public int getISBN() {
+return ISBN;
+}
+public String getName() {
+    return name;
+}
+public String getprice() {
+return price;
+}
+}
+
+a.arrayList
+code:
+import java.util.ArrayList;
+import java.util.Scanner;
+public class Q2_1 {
+    private static ArrayList<Book> BookList = new ArrayList<>();
+    private static Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) {
+    inputBooks();
+     printList();
+    scanner.close();
+    }
+    private static void inputBooks() {
+    System.out.println("How many Book's data you want to insert:");
+    int count = scanner.nextInt();
+    System.out.println("Insert Data :");
+    for (int i = 1; i <= count; i++) {
+    int ISBN;
+    String name, price;
+    System.out.print("Enter ISBN :");
+    ISBN = scanner.nextInt();
+    System.out.print("Enter name :");
+    name = scanner.next();
+    System.out.print("Enter price :");
+    price = scanner.next();
+    Book b = new Book(ISBN, name, price);
+    BookList.add(b);
+    System.out.println();
+    }
+    }
+    private static void printList(){
+    System.out.println("\nPrinting Data :");
+    for(int i = 0; i < BookList.size(); i++){
+    System.out.println("Book " + String.valueOf(i+1));
+    Book b = BookList.get(i);
+    System.out.println("Roll No : " + b.getISBN() + "\n" + "Name : " +
+    b.getName() + "\n" + "price : " + b.getprice());
+    System.out.println();
+    }
+    }
+    }
+    
+
+Output:
+ 
+b. LinkedList
+Code:
+import java.util.ArrayList;
+import java.util.Scanner;
+public class Q2_2 {
+    private static ArrayList<Book> BookList = new ArrayList<>();
+    private static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        inputBooks();
+        System.out.println("Do you want to delete any Book data :");
+        String reply = "no";
+        reply = scanner.next();
+        if (reply.toLowerCase().equals("yes")) {
+            int rno = 0;
+            System.out.print("Enter ISBN no. of Book :");
+            rno = scanner.nextInt();
+            removeBook(rno);
+        }
+        printList();
+        scanner.close();
+    }
+
+    private static void inputBooks() {
+    System.out.println("How many Book's data you want to insert:");
+    int count = scanner.nextInt();
+    System.out.println("Insert Data :");
+    for (int i = 1; i <= count; i++) {
+    int ISBN;
+    String name, price;
+    System.out.print("Enter ISBN :");
+    ISBN = scanner.nextInt();
+    System.out.print("Enter name :");
+    name = scanner.next();
+    System.out.print("Enter price :");
+    price = scanner.next();
+    Book b = new Book(ISBN, name, price);
+    BookList.add(b);
+    System.out.println();
+    }
+    }
+
+    private static void removeBook(int rno) {
+        int flag = 0;
+        for (int i = 0; i < BookList.size(); i++) {
+            Book b = BookList.get(i);
+            if (b.ISBN == rno) {
+                flag = 1;
+                BookList.remove(i);
+            } else {
+                flag = 0;
+            }
+        }
+        if (flag == 0) {
+            System.out.println("Book does not exist in the list.");
+        }
+    }
+
+    private static void printList() {
+        System.out.println("\nPrinting Data :");
+        for (int i = 0; i < BookList.size(); i++) {
+            System.out.println("Book " + String.valueOf(i + 1));
+            Book b = BookList.get(i);
+            System.out.println("Roll No : " + b.getISBN() + "\n" +
+                    "Name : " +
+                    b.getName() + "\n" + "price : " + b.getprice());
+            System.out.println();
+        }
+    }
+}
+
+
+Output:
+ 
+c. ArrayDeque
+Code:
+import java.util.ArrayDeque;
+import java.util.Scanner;
+public class Q2_3 {
+    private static ArrayDeque<Book> BookList = new ArrayDeque<>(5);
+    private static Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) {
+    printDequeList();
+    System.out.println();
+    BookList.addFirst(new Book(3, "ABC", "5600"));
+    BookList.addFirst(new Book(6, "PQR", "965"));
+    BookList.addLast(new Book(57, "LMN", "546"));
+    BookList.addLast(new Book(62, "Sudesh", "1256"));
+    printDequeList();
+    System.out.println("Do you want to clear list :");
+    String reply = "no";
+    reply = scanner.next();
+    if (reply.toLowerCase().equals("yes")) {
+    if (BookList.isEmpty()) {
+    System.out.println("List is already Empty.");
+    }
+    BookList.clear();
+    }
+    printDequeList();
+    }
+    private static void printDequeList() {
+    System.out.println("\nPrinting Data :");
+    for (int i = 0; i < BookList.size(); i++) {
+    System.out.println("Book " + String.valueOf(i + 1));
+    Book b = BookList.pop();
+    System.out.println("Roll No : " + b.getISBN() + "\n" +
+    "Name : " +
+    b.getName() + "\n" + "price : " + b.getprice());
+    System.out.println();
+    }
+    }
+    }
+
+Output:
+ 
+d. PriorityQueue
+Code:
+import java.util.*;
+import java.util.Scanner;
+public class Q2_4 {
+private static ArrayList<Book> BookList = new ArrayList<>();
+private static PriorityQueue<Integer> priorityList = new
+PriorityQueue<>();
+private static Scanner scanner = new Scanner(System.in);
+public static void main(String[] args) {
+inputBooks();
+printPriorityQueueList();
+}
+private static void printPriorityQueueList() {
+System.out.println("\nPrinting Data :");
+while (!priorityList.isEmpty()) {
+Book b = null;
+for (Book Book : BookList) {
+if (Book.ISBN == priorityList.peek()) {
+b = Book;
+}
+}
+priorityList.poll();
+System.out.println(
+"ISBN No : " + b.getISBN() + "\n" + "Name : " +
+b.getName() + "\n" + "price :" + b.getprice());
+System.out.println();
+}
+}
+private static void inputBooks() {
+System.out.println("How many Book's data you want to insert :");
+int count = scanner.nextInt();
+System.out.println("Insert Data :");
+for (int i = 1; i <= count; i++) {
+int ISBN;
+String name, price;
+System.out.print("Enter ISBN :");
+ISBN = scanner.nextInt();
+System.out.print("Enter name :");
+name = scanner.next();
+System.out.print("Enter price :");
+price = scanner.next();
+Book b = new Book(ISBN, name, price);
+BookList.add(b);
+priorityList.add(ISBN);
+System.out.println();
+}
+}
+}
+
+
+Output:
+ 	
+e. HashSet
+Code:
+import java.util.*;
+import java.util.Scanner;
+public class Q2_5 {
+private static HashSet<Book> BookList = new HashSet<>();
+private static Scanner scanner = new Scanner(System.in);
+public static void main(String[] args) {
+inputBooks();
+System.out.println();
+printHashSetList();
+scanner.close();
+}
+private static void printHashSetList() {
+System.out.println("Printing Data :");
+Iterator<Book> itr = BookList.iterator();
+while(itr.hasNext()){
+Book book = itr.next();
+System.out.println("ISBN No : " + book.getISBN() + "\n" + "Name :" + book.getName() + "\n" + "Price : " + book.getprice());
+System.out.println();
+}
+}
+private static void inputBooks(){
+System.out.println("How many Book's data you want to insert :");
+int count = scanner.nextInt();
+System.out.println("Insert Data :");
+for(int i = 1; i <= count; i++){
+int ISBNNo;
+String name, Price;
+System.out.print("Enter ISBNNo :");
+ISBNNo = scanner.nextInt();
+System.out.print("Enter name :");
+name = scanner.next();
+System.out.print("Enter Price :");
+Price = scanner.next();
+System.out.println();
+Book s = new Book(ISBNNo, name, Price);
+BookList.add(s);
+}
+}
+}
+
+Output:
+ 
+g. HashMap
+Code:
+import java.util.*;
+public class Q2_7 {
+private static HashMap<Integer, Book> BookMap = new HashMap<>();
+private static Scanner scanner = new Scanner(System.in);
+public static void main(String[] args) {
+// HashMap logic
+inputBooks();
+System.out.println();
+for (Map.Entry<Integer, Book> sEntry : BookMap.entrySet()) {
+System.out.println("Roll No : " + sEntry.getKey());
+Book b = sEntry.getValue();
+System.out.println("Name : " + b.name + " \nprice : " + b.price);
+System.out.println();
+}
+}
+private static void inputBooks() {
+System.out.println("How many Book's data you want to insert :");
+int count = scanner.nextInt();
+System.out.println("Insert Data :");
+for (int i = 1; i <= count; i++) {
+int ISBN;
+String name, price;
+System.out.print("Enter ISBN :");
+ISBN = scanner.nextInt();
+System.out.print("Enter name :");
+name = scanner.next();
+System.out.print("Enter price :");
+price = scanner.next();
+Book b = new Book(ISBN, name, price);
+BookMap.put(ISBN, b);
+System.out.println();
+}
+}
+}
+
+Output:
+ 
+h. LinkedHashMap
+Code:
+import java.util.*;
+public class Q2_8 {
+private static LinkedHashMap<Integer, Book> BookListMap = new
+LinkedHashMap<>();
+private static Scanner scanner = new Scanner(System.in);
+public static void main(String[] args) {
+// LinkedHashMap Logic
+inputBooks();
+System.out.println();
+for (Map.Entry<Integer, Book> sEntry : BookListMap.entrySet()) {
+System.out.println("Roll No : " + sEntry.getKey());
+Book b = sEntry.getValue();
+System.out.println("Name : " + b.name + " \nprice : " + b.price);
+System.out.println();
+}
+}
+private static void inputBooks() {
+System.out.println("How many Book's data you want to insert :");
+int count = scanner.nextInt();
+System.out.println("Insert Data :");
+for (int i = 1; i <= count; i++) {
+int ISBN;
+String name, price;
+System.out.print("Enter ISBN :");
+ISBN = scanner.nextInt();
+System.out.print("Enter name :");
+name = scanner.next();
+System.out.print("Enter price :");
+price = scanner.next();
+Book b = new Book(ISBN, name, price);
+BookListMap.put(ISBN, b);
+System.out.println();
+}
+}
+}
+
+Output:
+ 
+
+PL- 2 Lab
+ASSIGNMENT 7
+1.Can we call the run() method instead of start()? 
+When we create a thread in Java and call its start() method it is scheduled to run (it is in a Runnable state). The scheduler of the underlying Operating System schedules the runnable thread to run (by allotting CPU cycles) and then only JVM calls the run() method of the thread. So, the run() method is not directly called by the developer but it doesn’t mean we can’t call the run() method directly. If we call the run() method directly rather than following the convention of calling the start() method, no new thread will be started. The logic is written in the run() method will be executed within the current thread's context, which most probably will be the main thread. So not calling the thread’s start method and directly calling the run() method means a new thread will not be spawned and the run() method runs as a normal overridden method.
+
+2.Explain the use of the word Synchronized. 
+1.Java provides a keyword “Synchronized” that can be used in a program to mark a Critical section. The critical section can be a block of code or a complete method. Thus, only one thread can access the critical section marked by the Synchronized keyword. 
+2. The synchronized keyword in Java guarantees mutually exclusive access to shared resources by providing a locking mechanism. Locking also prevents race conditions. 
+3. Using the synchronized keyword, we prevent concurrent programming errors in code. 
+4. When we mark a block or method synchronized, we protect the shared resources inside these entities from simultaneous access and thereby corruption. 
+5. When a method or block is declared synchronized, a thread needs an exclusive lock to enter the synchronized method or block. After performing the necessary actions, the thread releases the lock and will flush the write operation. This way it will eliminate memory errors related to inconsistency.
+
+3.Write a program to display thread information.
+Code:
+import java.util.Set;
+class MyThread implements Runnable {
+ public void run() {
+ try {
+ Thread.sleep(2000);
+ } catch (Exception err) {
+ System.out.println(err);
+ }
+ }
+}
+public class A7_Q3 {
+ public static void main(String args[]) throws Exception {
+ for (int thread_num = 0; thread_num < 8; thread_num++) {
+ Thread t = new Thread(new MyThread());
+ t.setName("MyThread:" + thread_num);
+ t.start();
+ }
+ Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
+ for (Thread t : threadSet) {
+ System.out.println(
+ "Thread :" + t + ":" + "Thread status : " + t.getState()
+ );
+ }
+ }
+}
+
+Output:
+ 
+
+4.Create a thread using the Thread class and Runnable class.
+Code:
+class MyThread1 extends Thread {
+    @Override
+    public void run() {
+    System.out.println("\n\nThread created using Thread class.");
+    }
+   }
+   class MyThread2 implements Runnable {
+    @Override
+    public void run() {
+    System.out.println("\n\nThread created using Runnable interface.");
+    }
+   }
+   public class A7_Q4 {
+    public static void main(String[] args) {
+    MyThread1 t1 = new MyThread1();
+    t1.start();
+    MyThread2 t2 = new MyThread2();
+    Thread T2 = new Thread(t2);
+    T2.start();
+    }
+   }
+
+Output:
+ 
