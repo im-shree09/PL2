@@ -1,0 +1,103 @@
+import java.sql.*;
+
+class OracleCon {
+    public static void main(String args[]) {
+        try {
+            
+            // step1 load the driver class
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+
+            // step2 create the connection object
+            Connection con = DriverManager.getConnection(
+                    "jdbc:oracle:thin:@10.10.16.15:1521/pdborcl", "2020BTECS00031", "2020BTECS00031");
+
+            // step3 create the statement object
+            Statement stmt = con.createStatement();
+/*
+            // step4 execute query
+            ResultSet rs = stmt.executeQuery("select * from Musician");
+            while (rs.next())
+                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+
+            // step5 close the connection object
+
+*/
+
+
+//  TABLE CREATED SUCCESSFULLY.........
+/*
+String sql = "CREATE TABLE REGISTRATION( " +
+"roll_no INTEGER not NULL, " +
+" name VARCHAR(255), " + 
+" city VARCHAR(255), " + 
+" Grade VARCHAR(1), " + 
+" marks number(10),"+
+" PRIMARY KEY (roll_no ))"; 
+
+stmt.executeUpdate(sql);
+System.out.println("Created table in given database..."); 
+
+*/
+
+
+
+
+
+
+//INSDERT DATA IN DATABASE
+
+// INSERT a query....
+
+
+/*
+String sql1 = "INSERT INTO Registration VALUES(1, 'Atul', 'sangli', 'A','90.50')";
+stmt.executeUpdate(sql1);
+
+
+
+sql1 = "INSERT INTO Registration VALUES(2, 'Sangram', 'sangli', 'B','70.25')";
+stmt.executeUpdate(sql1);
+sql1 = "INSERT INTO Registration VALUES(3, 'Satya', 'mumbai', 'B','61.36')";
+stmt.executeUpdate(sql1);
+sql1 = "INSERT INTO Registration VALUES(4, 'Jaydeep', 'pune', 'B','60.95')";
+stmt.executeUpdate(sql1);
+sql1 = "INSERT INTO Registration VALUES(5, 'Abhi', 'sangli', 'C','55.26')";
+stmt.executeUpdate(sql1);
+sql1 = "INSERT INTO Registration VALUES(6, 'Prashant', 'pune', 'C','55.84')";
+stmt.executeUpdate(sql1);
+System.out.println("Inserted records into the table........."); 
+*/
+
+/*
+String sql2 = "DELETE FROM Registration where roll_no=5";
+stmt.executeUpdate(sql2);
+*/
+
+/*
+String sql3="select name from Registration where marks>60";
+stmt.executeUpdate(sql3);
+*/
+
+
+ResultSet rs1 = stmt.executeQuery("select * from Musician");
+            while (rs1.next())
+                System.out.println(rs1.getInt(1) + "  " + rs1.getString(2) + "  " + rs1.getString(3));
+
+
+                    
+
+
+
+
+
+System.out.println("Inserted records into the table........."); 
+
+
+            con.close();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+}
