@@ -1,597 +1,165 @@
-Assignment-2
-PL-2
-1.	Explain difference between method overloading and method overriding.
- 
-2.	Implement all string functions in java.
-Code:
-public class Q2 {
-    
-    public static void main(String[] args) {
-        String s="Shreeshail";
-        System.out.println(s.length());
-        System.out.println(s.toLowerCase());
-        System.out.println(s.toUpperCase());
-        System.out.println(s.concat(" Mahajan."));
-        System.out.println(s.charAt(4));
-        System.out.println(s.indexOf('l'));
-        System.out.println(s.trim());
-    }
+import java.utils.*;
+
+class Account 
+{    
+    public static  int min=500;    
+    String name;    
+    int Account_num;    
+    public float o_Price;    
+    Scanner sc=new Scanner(System.in);    
+    public void get_info()    
+    {        
+        System.out.println("Enter Name:");        
+        name=sc.nextLine();       
+        System.out.println("Enter Account Number:");        
+        Account_num=sc.nextInt();        
+        System.out.println("Enter opening Ammount must>:");       
+        o_Price=sc.nextFloat();        
+        if(o_Price <500)        
+        {            
+            System.out.println("Enter opening Ammount must>500:");       
+        }    
+    }   
+            public void show()    
+            {        
+                System.out.println("Name:"+name);        
+                System.out.println("Account_number:"+Account_num);       
+                System.out.println("Ammount:"+o_Price);    
+            } 
 }
 
-Output:
- 
-3.	Implement all stringbuffer functions in java.
-Code:
-public class Q3 {
-    public static void main(String[] args) {
-        StringBuffer s=new StringBuffer("Shreeshail");
-        System.out.println(s);
 
-        s.append("Mahajan");
-        System.out.println("Append method: "+s);
-
-        s.insert(10, "sss");
-        System.out.println("Insert method: "+s);
-
-        s.replace(0, 10, "abcd");
-        System.out.println("Replace method: "+s);
-
-        s.delete(0, 5);
-        System.out.println("Delete method: "+s);
-
-        s.reverse();
-        System.out.println("Reverse method: "+s);
+class  Current  extends Account 
+{   
+    float deposit,withdraw,penality;   
+    public void deposit()   
+    {      
+        System.out.println("Eneter Ammount to deposit") ;      
+        deposit =sc.nextFloat();      
+        show();      
+        o_Price=o_Price+deposit;     
+        System.out.println("Total Ammount is :"+o_Price) ;         
     }
-}
 
-Output:
- 
-4.	Explain with example declaration of string using string literal and new keyword.
-Code:
-public class Q4 {
-    public static void main(String args[]){
-    //using string literal
-    String s1 = "Shreeshail";
-    System.out.println("s1: "+s1);
-    //using new keyword
-    String s2= new String(" Mahajan");
-    System.out.println("s2: "+s2);
+    public void check_Bal()   
+    {       
+        if(o_Price<min)
+        {
+          System.out.println("Ammount should greater than 500");     
+        o_Price=o_Price-150;           
+        System.out.println("You have debited ammount 150 from your acccount Account balance is:"+o_Price);       
+        }          
     }
-}
 
-Output:
- 
-5.	Create a class named 'Shape' with a method to print "This is This is shape". Then create two other classes named 'Rectangle', 'Circle' inheriting the Shape class, both having a method to print "This is rectangular shape" and "This is circular shape" respectively. Create a subclass 'Square' of 'Rectangle' having a method to print "Square is a rectangle". Now call the method of 'Shape' and 'Rectangle' class by the object of 'Square' class.
-Code:
-class Shape{
-    void printShape()
-    {
-        System.out.println("Into shape class");
+    public void withdraw_Bal()   
+    {       
+        System.out.println("Enter Ammount to withdraw");       
+        withdraw=sc.nextFloat();       
+        show();           
+        // if(withdraw<500)
+        // {
+        //   System.out.println("Ammount should greater than 500"); 
+
+        // }
+
+    if(withdraw<o_Price){
+        o_Price=o_Price-withdraw;
+        System.out.println("After withdraw balance is "+o_Price); 
     }
-}
+    else{
+        System.out.println("Insufficient balance"); 
+    }
+    check_Bal();
+    }}
 
-class Rectangle extends Shape
+
+class Saving extends Account
 {
-    void printRectangle()
     {
-        System.out.println("Into rectangle class");
-    }
-}
-
-class Circle extends Shape
-{
-    void printCircle()
-    {
-        System.out.println("Into Circle class");
-    }
-}
-
-class Square extends Rectangle
-{
-    void printSquare()
-    {
-        System.out.println("Into Square class");
-    }
-}
-
-public class Q5{
-    public static void main(String args[])
-    {
-        Square s = new Square();
-        s.printRectangle();
-        s.printShape();
-    }
-}
-
-
-
-Output:
- 
-
-6.	Create game characters using the concept of inheritance. Suppose, in your game, you want three characters - a maths teacher, a footballer and a businessman. Since, all of the characters are persons, they can walk and talk. However, they also have some special skills. A maths teacher can teach maths, a footballer can play football and a businessman can run a business. You can individually create three classes who can walk, talk and perform their special skill as shown in the figure below.
-
- 
-
-In each of the classes, you would be copying the same code for walk and talk for each character. If you want to add a new feature - eat, you need to implement the same code for each character. This can easily become error prone (when copying) and duplicate codes. It'd be a lot easier if we had a Person class with basic features like talk, walk, eat, sleep, and add special skills to those features as per our characters. This is done using inheritance. 
-
- 
-
-
-Using inheritance, now you don't implement the same code for walk and talk for each class. You just need to inherit them. So, for Maths teacher (derived class), you inherit all features of a Person (base class) and add a new feature TeachMaths. Likewise, for a footballer, you inherit all the features of a Person and add a new feature PlayFootball and so on.
-
-Code:
-class person
-{
-    void walk()
-    {
-        System.out.println("Walking...");
+    float deposit,withdraw,intr;
+        System.out.println("Enter amount "); 
+        deposit=sc.nextFloat();
+        show();
+        o_Price=o_Price+deposit;
+        System.out.println("Total amount is "+o_Price); 
     }
 
-    void talk()
-    {
-        System.out.println("Talking....");
-    }
-
-    void eat()
-    {
-        System.out.println("Eating....");
-    }
-}
-
-class mathsTeacher extends person
-{
-    void teachMaths()
-    {
-        System.out.println("Maths teacher is teaching");
-    }
-}
-
-class footballer extends person
-{
-    void playFootball()
-    {
-        System.out.println("Footballer is playing football");
-    }
-}
-
-class businessman extends person
-{
-    void runBusiness()
-    {
-        System.out.println("Businessman is in a meeting");
-    }
-}
-
-public class Q6 {
-    public static void main(String args[])
-    {
-        mathsTeacher m= new mathsTeacher();
-        m.walk();
-        m.talk();
-        m.eat();
-        m.teachMaths();
-        System.out.println();
-        
-        footballer f = new footballer();
-        f.walk();
-        f.talk();
-        f.eat();
-        f.playFootball();
-        System.out.println();
-
-        businessman b = new businessman();
-        b.walk();
-        b.talk();
-        b.eat();
-        b.runBusiness();
-        System.out.println();
-    }
-}
-
-
-Output:
- 
-7.	WAP to manage the employee allowance from a specific department by creating class structure as follow, 
-InheritanceEx2 
-|
-|
-InheritanceEx2Main.java 
-| 
-|- dept | Deparment.java 
-| 
-| 
-| 
-|- emp | Employee.java extends Department 
-| 
-| 
-| 
-|- allowance | Allowance.java extends Employee 
-| 
-| [Multilevel Inheritance]
-
-Code:
-import java.util.Scanner;
-
-class Department {
-
-    protected String departmentName;
-    protected int department_no;
-}
-
-class Employee extends Department {
-
-    protected int emp_id;
-    protected String employeeFirstName;
-    protected String employeeLastName;
-    protected String gender;
-    protected byte age;
-    protected int experience;
-
-    Employee()
+    public void check_interest()
     {
         
-        Scanner sc=new Scanner(System.in);
-        System.out.print("Enter employee id:-");
-        emp_id=sc.nextInt();
-        System.out.print("Enter employee's first name:-");
-        employeeFirstName=sc.next();
-        System.out.print("Enter employee's last name:-");
-        employeeLastName=sc.next();
-        System.out.print("Enter gender of the employee:-");
-        gender=sc.next();
-        System.out.print("Enter he's/her age:-");
-        age=sc.nextByte();
-        System.out.print("Enter he's/her experience:-");
-        experience=sc.nextInt();
-        System.out.println("1)Buisness\n2)Marketing\n3)DESIGNING\n4)MAINTAINENCE");
-        System.out.println("Chosse your depatment no");
-        department_no=sc.nextInt();
-        switch(department_no)
-        {
-            case 1:departmentName="BUISNESS";
-            break;
-            case 2:departmentName="MARKETING";
-            break;
-            case 3:departmentName="DESIGNING";
-            break;
-            case 4:departmentName="MAINTAINENCE";
-            break;
-
-            default:departmentName="null";
-        }
-
-    
-
-        sc.close();
+        intr=(o_Price*2)/100;
+        o_Price=o_Price+intr;
+        
+        System.out.println("Total amount with interest is "+o_Price);
     }
 
-}
-
-class Allowance extends Employee {
-
-    protected int homeAllowance=0;
-    protected int healthAllowance=0;
-    protected int travellAllowance=0;
-    private int totalAllowance = 0;
-
-    Allowance()
+    public void withdraw_Bal()
     {
-        super();
-    }
+        System.out.println("Enter Ammount to withdraw:");       
+        withdraw=sc.nextFloat();       
+        show();       
+        if(withdraw<o_Price)
+        {
+            o_Price=o_Price-withdraw;
+        System.out.println("Total amount is "+o_Price);
 
-    public void calculateateAllowance() {
-        if (departmentName == "BUISNESS") {
-            homeAllowance = 20000;
-            healthAllowance = 25000;
-            travellAllowance = 50000;
-        } else if (departmentName == "MARKETING") {
-            homeAllowance = 18000;
-            healthAllowance = 25000;
-            travellAllowance = 35000;
-        } else if (departmentName == "DESIGNING") {
-            homeAllowance = 16000;
-            healthAllowance = 23000;
-            travellAllowance = 30000;
-        } else if (departmentName == "MAINTAINENCE") {
-            homeAllowance = 15000;
-            healthAllowance = 20000;
-            travellAllowance = 25000;
         }
-        else{
-            System.out.println("SOMETHING WRONG!");
+        else
+        {
             
+        System.out.println("Insufficient ");
         }
-
-        totalAllowance = homeAllowance + healthAllowance + travellAllowance;
-    }
-
-    public int getAllowance() {
-
-        System.out.println("Total allowance is :-");
-        return this.totalAllowance;
-    }
-}
-
-public class Q7 {
-    public static void main(String[] args) {
-
-        Allowance allowance=new Allowance();
-        allowance.calculateateAllowance();
-        System.out.println(allowance.getAllowance()+"/-");
     }
 }
 
 
-
-8.	Write a Java Program to demonstrate StringBuilder class methods.
-Code:
-public class Q8 {
-    public static void main(String[] args) {
-        StringBuilder s=new StringBuilder("Shreeshail");
-        System.out.println(s);
-
-        s.append("Mahajan");
-        System.out.println("Append method: "+s);
-
-        s.insert(10, "sss");
-        System.out.println("Insert method: "+s);
-
-        s.replace(0, 10, "abcd");
-        System.out.println("Replace method: "+s);
-
-        s.delete(0, 5);
-        System.out.println("Delete method: "+s);
-
-        s.reverse();
-        System.out.println("Reverse method: "+s);
-    }
-}
-
-
-Output:
- 
-9.	Write a Java Program to demonstrate Method overriding.( create class Result with method result(). Override method result() in UGResult and PGResult class)
-Code:
-    class Result{
-    
-        public void result()
-        {
-            System.out.println("This is Result class");
-        }
-    }
-    class UGResult{
-    
-        public void result(){
-            
-            System.out.println("This is UG Result class.");
-        }
-    }
-    class PGResult{
-    
-        public void result()
-        {
-            System.out.println("This is PG Result class.");
-            
-        }
-    }
-    public class Q9 {
-        public static void main(String[] args) {
-            PGResult pgResult=new PGResult();
-            pgResult.result();
-            
-        }
-    }
-    
-
-Output:
- 
-10.	Write a java program to create a class called STUDENT with data members PRN, Name and age. Using inheritance, create a classes called UGSTUDENT and PGSTUDENT having fields as semester, fees and stipend. Enter the data for at least 5 students. Find the semester wise average age for all UG and PG students separately.
-Code:
-    class Result{
-    
-        public void result()
-        {
-            System.out.println("This is Result class");
-        }
-    }
-    class UGResult{
-    
-        public void result(){
-            
-            System.out.println("This is UG Result class.");
-        }
-    }
-    class PGResult{
-    
-        public void result()
-        {
-            System.out.println("This is PG Result class.");
-            
-        }
-    }
-    public class Q9 {
-        public static void main(String[] args) {
-            PGResult pgResult=new PGResult();
-            pgResult.result();
-            
-        }
-    }
-    
-
-11.	Implement hybrid inheritance using all access specifiers (public, private, protected).
-Code:
-    class Animal{
-    
-        private String animalType;
-        
-        public void setAnimalType(String type)
-        {
-            this.animalType=type;
-        }
-        public String getAnimalType() {
-            return animalType;
-        }
-    
-    }
-    class Dog extends Animal{
-    
-        protected String breedName;
-        protected String gender;
-    
-        Dog()
-        {
-            setAnimalType("Dog");
-        }
-        
-        public void setBrideName(String brideName) {
-            this.breedName = brideName;
-        }
-        public void setGender(String gender) {
-            this.gender = gender;
-        }
-        public String getBrideName() {
-            return breedName;
-        }
-    
-        public String getGender() {
-            return gender;
-        }
-           
-    
-    }
-    
-    class GermenShefred extends Dog{
-    
-        public String name;
-        public String color;
-    
-        GermenShefred()
-        {
-            setBrideName("GermenShfred");
-        }
-    
-        public void setName(String name) {
-            this.name = name;
-        }
-        public void setColor(String color) {
-            this.color = color;
-        }
-    
-        public String getName() {
-            return name;
-        }
-        public String getColor() {
-            return color;
-        }
-    }
-    class Cat extends Animal{
-    
-        protected String brideName;
-        protected String gender;
-    
-        Cat()
-        {
-            setAnimalType("Cat");
-        }
-        public void setBrideName(String brideName) {
-            this.brideName = brideName;
-        }
-        public void setGender(String gender) {
-            this.gender = gender;
-        }
-    
-        
-    }
-    class Persian extends Cat{
-        
-        public String name;
-        public String color;
-    
-        Persian()
-        {
-            setBrideName("Persian");
-        }
-    
-        public void setName(String name) {
-            this.name = name;
-        }
-        public void setColor(String color) {
-            this.color = color;
-        }
-    
-        public String getName() {
-            return name;
-        }
-        public String getColor() {
-            return color;
-        }
-        public String getBreedeName() {
-            return null;
-        }
-    }
-    
-    public class Q11 {
-        public static void main(String[] args) {
-            GermenShefred dog=new GermenShefred();
-            Persian cat=new Persian();
-    
-            dog.setName("Max");
-            dog.setColor("Black");
-            cat.setName("XYZ");
-            cat.setColor("Orange");
-    
-            System.out.println(dog.getAnimalType()+":-\n"+dog.getBrideName()+"\n"+dog.getName()+"\n"+dog.getColor()+"\n");
-            System.out.println(cat.getAnimalType()+":-\n"+cat.getBreedeName()+"\n"+cat.getName()+"\n"+cat.getColor());
-        }
-    }
-    
-
-Output:
- 
-12.	Write a program to implement a class Teacher contains two fields Name and Qualification. Extend the class to Department, it contains Dept. No and Dept. Name. An Interface named as College it contains one field Name of the College. Using the above classes and Interface get the appropriate information and display it.
-Code:
-interface College{
-    String name="Walchand College Of Engginearing Sangli";
-}
-
-class Departmet{
-   public int dept_no;
-    public String dept_name;
-}
-
-class Teacher extends Departmet implements College{
-    String name;
-    String qualification;
-
-    void setInfo(String name,String qualification,int dept_no,String dept_name)
+public class ESE
+{
+    static String ch;
+    public static void main(String[] args)
     {
-            this.name=name;
-            this.dept_name=dept_name;
-            this.dept_no=dept_no;
-            this.qualification=qualification;
-    }
+        int count=0;
+        Scanner sc =new Scanner(System.in);
+        Current cu =new Current();
+        Saving sav=new Saving();
 
-    void displyData()
-    {
-        System.out.println("College name:-"+College.name);
-        System.out.println("Teacher name"+name);
-        System.out.println("Qualification:-"+qualification);
-        System.out.println("Department no.:-"+dept_no);
-        System.out.println("Department name:-"+dept_name);
-    }
-
-}
-
- class q12{
-    public static void main(String[] args) {
         
-        Teacher t=new Teacher();
-        t.setInfo("Shree","B.tech",1,"COMPUTER SCIENCE");
+        System.out.println("Choose account ");
+        System.out.println("c- Current OR s= Saving ");
+        ch=sc.nextLine();
+        if(ch.equalsIgnoreCase("c"))
+        {       
+            cu.get_info();       
+            cu.check_Bal();       
+            while(count!=4)       
+            {                     
+                System.out.println("1.Display\n2.Deposit\n3.Withdraw\n4.Exit");            
+                System.out.println("Enter Your Coice");           
+                int cho=sc.nextInt();           
+                switch(cho)           
+                {               
+                    case 1: cu.show();              
+                    break;               
+                    case 2: cu.deposit();               
+                    break;               
+                    case 3: cu.withdraw_Bal();               
+                    break;               
+                    case 4: System.exit(0);               
+                    break;               
+                    default:System.out.println("Wrong Choice!"); 
+                }                  
+            }          
+        }
 
-        t.displyData();
+
     }
 }
 
 
-Output:
- 
+
+             
+
+
+
+
+
